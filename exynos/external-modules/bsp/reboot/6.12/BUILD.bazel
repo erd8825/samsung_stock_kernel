@@ -1,0 +1,29 @@
+load("//build/kernel/kleaf:kernel.bzl", "ddk_module")
+
+exports_files([
+    "Kconfig",
+])
+
+ddk_module(
+    name = "sec_reboot",
+    srcs = [
+      "sec_reboot.c",
+    ],
+    hdrs = [
+      "sec_reboot.h",
+    ],
+    includes = ["."],
+    kconfig = ":Kconfig",
+    defconfig = ":defconfig",
+    out = "sec_reboot.ko",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    deps = [
+        "//exynos/soc-series/common:exynos_soc_ddk_header",
+        "//exynos/soc-series/common/drivers/soc/samsung/exynos/debug:dss",
+    ],
+    visibility = [
+        "//exynos/device:__subpackages__",
+        "//exynos/soc-series:__subpackages__",
+        "//exynos/external-modules:__subpackages__",
+    ],
+)

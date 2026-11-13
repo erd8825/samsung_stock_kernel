@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: GPL-2.0
+#
+# This file should be included by external modules that need to link to this
+# project.
+
+KCFLAGS += -I$(KERNEL_SRC)/../exynos/device/univ/universal9925/include
+
+EXTRA_SYMBOLS += $(O)/../exynos/device/univ/univesal9925/Module.symvers
+

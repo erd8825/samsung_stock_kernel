@@ -1,0 +1,42 @@
+config DRV_SAMSUNG_PMIC
+	tristate "Samsung PMIC common and sysfs system"
+	help
+	 This driver supports a Samsung PMIC sysfs amd common.
+
+config REGULATOR_S2MPS25
+	tristate "Samsung S2MPS25 voltage regulator for s5e9945"
+	depends on MFD_S2MPS25
+	help
+	  This driver supports a Samsung S2MPS25 voltage output regulator
+	  via SPMI bus. S2MPS25 is comprised of high efficient Buck converters
+	  including Dual-Phase Buck converter, Buck-Boost converter, various LDOs.
+
+config REGULATOR_S2MPS26
+	tristate "Samsung S2MPS26 voltage regulator for s5e9945"
+	depends on MFD_S2MPS26
+	help
+	  This driver supports a Samsung S2MPS26 voltage output regulator
+	  via SPMI bus. S2MPS26 is comprised of high efficient Buck converters
+	  including Dual-Phase Buck converter, Buck-Boost converter, various LDOs.
+
+config REGULATOR_S2MPM07
+	tristate "Samsung S2MPM07 voltage regulator for s5e9945"
+	depends on MFD_S2MPM07
+	help
+	  This driver supports a Samsung S2MPM07 voltage output regulator
+	  via SPMI bus. S2MPM07 is comprised of high efficient Buck converters
+	  including Dual-Phase Buck converter, Buck-Boost converter, various LDOs.
+
+config REGULATOR_S2MPB02
+	tristate "Samsung S2MPB02 regulator"
+	depends on MFD_S2MPB02
+	help
+	  This driver controls a Samsung S2MPB02 regulator
+	  via I2C bus.
+
+config REGULATOR_S2DOS05
+	tristate "Samsung S2DOS05 regulator"
+	depends on I2C
+	help
+	  This driver controls a Samsung S2DOS05 regulator
+	  via I2C bus.

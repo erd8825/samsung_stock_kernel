@@ -1,0 +1,31 @@
+# SPDX-License-Identifier: GPL-2.0-only
+#
+# Samsung SoC drivers
+#
+
+config EXYNOS_CPUHP
+	tristate "CPU Hotplug driver support"
+	default n
+	help
+	  Support CPU Hotplug interface for Exynos SoC.
+
+config EXYNOS_CPUPM
+	tristate "Exynos CPU Power Management driver"
+	depends on ARCH_EXYNOS && PMUCAL
+	default n
+	help
+	  Support Exynos CPU Power Control for EXYNOS SoC.
+
+config EXYNOS_AFM
+	tristate "Exynos AFM Handler"
+	depends on CPU_FREQ
+	default n
+	help
+	  Enable AFM handler for Exynos SoC.
+
+config EXYNOS_UFCC
+	tristate "User Frequency & C-state Control"
+	depends on EXYNOS_CPUPM && ARM_EXYNOS_ACME
+	default n
+	help
+	  Control Frequency & C-state by user

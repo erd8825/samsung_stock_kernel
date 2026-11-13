@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: GPL-2.0-only
+#
+# Input core configuration
+#
+
+config KEYBOARD_S2MPS25
+	tristate "Samsung Electronics S2MPS25 Powerkey/Vol-down Controller"
+	depends on I2C
+	depends on MFD_S2MPS25
+

@@ -1,0 +1,41 @@
+load(
+    "//build/kernel/kleaf:kernel.bzl",
+    "ddk_module",
+)
+load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
+
+package(default_visibility = [
+    "//exynos:__subpackages__",
+])
+
+bool_flag(
+    name = "watch",
+    build_setting_default = False,
+)
+
+config_setting(
+    name = "watch_is_set",
+    flag_values = {":watch": "1"},
+)
+
+ddk_module(
+    name = "sec_key_notifier",
+    srcs = [
+      "sec_key_notifier.c",
+    ],
+    hdrs = [
+      "sec_key_notifier.h",
+    ],
+    includes = ["."],
+    kconfig = ":Kconfig",
+    defconfig = select({
+        ":watch_is_set": ":defconfig_watch",
+        "//conditions:default": ":defconfig",
+    }),
+    out = "sec_key_notifier.ko",
+    kernel_build = "//exynos/soc-series/common:exynos_kernel_build",
+    deps = [
+        "//common:all_headers_aarch64",
+    ],
+)
+

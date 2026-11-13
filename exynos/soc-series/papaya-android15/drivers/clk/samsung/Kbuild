@@ -1,0 +1,5 @@
+# SPDX-License-Identifier: GPL-2.0-only
+
+obj-$(CONFIG_COMPOSITE_CLK_SAMSUNG)     += clk_exynos.o
+clk_exynos-$(CONFIG_COMPOSITE_CLK_SAMSUNG)      += composite.o
+clk_exynos-$(CONFIG_SOC_S5E8825)      += clk-s5e8825.o

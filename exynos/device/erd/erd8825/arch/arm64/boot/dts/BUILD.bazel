@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+
+load("//build/kernel/kleaf:kernel.bzl", "kernel_dtstree")
+
+filegroup(
+    name = "erd8825_dt_sources",
+    srcs = glob([
+            "samsung/**/*.dtsi",
+            "samsung/**/*.dtso",
+            "erd/**/*.dtsi",
+            "erd/**/*.dtso",
+            "exynos-base-dts/**/*.dts",
+            "exynos-base-dts/**/*.dtsi",
+        ],
+    ),
+    visibility = [
+        "//exynos/device:__subpackages__",
+    ],
+)
+
+kernel_dtstree(
+    name = "erd8825_dt",
+    srcs = glob([
+            "Makefile",
+            "erd/Makefile",
+            "samsung/**/Makefile",
+            "exynos-base-dts/Makefile",
+    ]) + [
+        "erd8825_dt_sources",
+        "//exynos/soc-series/papaya-android15:exynos.dt-bindings",
+        "//exynos/device/erd/erd8825:erd8825.dt-bindings",
+    ],
+    visibility = [
+        "//exynos/device/erd/erd8825:__pkg__",
+    ],
+)

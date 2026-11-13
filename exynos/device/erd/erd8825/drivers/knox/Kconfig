@@ -1,0 +1,2 @@
+source "$(KCONFIG_EXT_PREFIX)drivers/knox/ngksm/Kconfig"
+source "$(KCONFIG_EXT_PREFIX)drivers/knox/hdm/Kconfig"

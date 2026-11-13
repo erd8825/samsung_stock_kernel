@@ -1,0 +1,22 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+build --flag_alias=factory=//exynos/soc-series/common:factory
+
+common --//exynos/soc-series/common:exynos_kernel_build=//exynos/device/erd/erd8825:erd8825
+common --//exynos/soc-series/common:exynos_soc_header=//exynos/soc-series/papaya-android15:exynos.soc_headers
+
+build:erd8825_eng --//exynos/soc-series/common:exynos_build_variant=eng
+build:erd8825_eng --//exynos/soc-series/common:exynos_soc_module=//exynos/soc-series/papaya-android15:s5e8825_soc_module.eng
+build:erd8825_eng --defconfig_fragment=//exynos/soc-series/papaya-android15:arch/arm64/configs/base_kernel_eng.fragment
+build:erd8825_eng --notrim
+
+build:erd8825_userdebug --//exynos/soc-series/common:exynos_build_variant=userdebug
+build:erd8825_userdebug --//exynos/soc-series/common:exynos_soc_module=//exynos/soc-series/papaya-android15:s5e8825_soc_module.userdebug
+build:erd8825_userdebug --defconfig_fragment=//exynos/soc-series/papaya-android15:arch/arm64/configs/base_kernel_userdebug.fragment
+build:erd8825_userdebug --notrim
+
+build:erd8825_user --//exynos/soc-series/common:exynos_build_variant=user
+build:erd8825_user --//exynos/soc-series/common:exynos_soc_module=//exynos/soc-series/papaya-android15:s5e8825_soc_module.user
+
+build:erd8825_abi --//exynos/soc-series/common:exynos_build_variant=user
+build:erd8825_abi --//exynos/soc-series/common:exynos_soc_module=//exynos/soc-series/papaya-android15:s5e8825_soc_module.user
+build:erd8825_abi --//exynos/soc-series/common:exynos_abi_update=yes

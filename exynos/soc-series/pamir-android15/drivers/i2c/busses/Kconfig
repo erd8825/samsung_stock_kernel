@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: GPL-2.0-only
+
+comment "HSI2C Drivers"
+
+config I2C_EXYNOS5_EXT
+	tristate "Exynos high-speed I2C driver"
+	depends on OF
+	depends on ARCH_EXYNOS || COMPILE_TEST
+	help
+	  High-speed I2C controller on Samsung Exynos5 and newer Samsung SoCs
+

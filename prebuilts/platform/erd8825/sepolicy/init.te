@@ -1,0 +1,5 @@
+#============= init ==============
+allow init debugfs:dir mounton;
+allow init functionfs:dir mounton;
+dontaudit init self:capability dac_read_search;
+

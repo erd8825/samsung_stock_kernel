@@ -1,0 +1,15 @@
+source "$(KCONFIG_EXT_SOC_PREFIX)Kconfig.ext"
+
+source "$(KCONFIG_EXT_PREFIX)Kconfig.ext_modules"
+
+source "$(KCONFIG_EXT_PREFIX)drivers/input/touchscreen/sec_input/Kconfig"
+
+source "$(KCONFIG_EXT_PREFIX)drivers/input/touchscreen/stm/stm_spi/Kconfig"
+# IFPMIC max77705
+source "$(KCONFIG_EXT_PREFIX)drivers/battery/Kconfig"
+source "$(KCONFIG_EXT_PREFIX)drivers/mfd/max77705/Kconfig"
+source "$(KCONFIG_EXT_PREFIX)drivers/usb/notify/Kconfig"
+source "$(KCONFIG_EXT_PREFIX)drivers/muic-mcd/Kconfig"
+source "$(KCONFIG_EXT_PREFIX)drivers/samsung/Kconfig"
+source "$(KCONFIG_EXT_PREFIX)drivers/staging/android/switch/Kconfig"
+source "$(KCONFIG_EXT_PREFIX)drivers/usb/typec/Kconfig"

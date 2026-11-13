@@ -1,0 +1,4 @@
+# Samsung sec sysfs Feature
+ccflags-y += -I$(srctree)/$(src)/include
+obj-$(CONFIG_DRV_SAMSUNG)	+= sec_class.o
+

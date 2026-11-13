@@ -1,0 +1,71 @@
+/*
+ * copyright (c) 2024 samsung electronics co., ltd.
+ *		http://www.samsung.com
+ *
+ * this program is free software; you can redistribute it and/or modify
+ * it under the terms of the gnu general public license version 2 as
+ * published by the free software foundation.
+ */
+
+#include <dt-bindings/clock/s5e9925.h>
+/{
+	contexthub_0: contexthub {
+		compatible = "samsung,exynos-nanohub";
+		memory-region = <&contexthub_rmem>;
+		/* INTREQ MAILBOX_AP2CHUB */
+		interrupts = <GIC_SPI INTREQ__MAILBOX_CHUB2AP IRQ_TYPE_LEVEL_HIGH 0>,
+			     <GIC_SPI INTREQ__WDT_CHUB IRQ_TYPE_LEVEL_HIGH 0>;
+		reg =	<0x0 0x14CC0000 0x200>,
+			<0x0 0x02800000 0x180000>,
+			<0x0 0x148F0000 0x100>,
+			<0x0 0x15530000 0xC0>,
+			<0x0 0x15540000 0xC0>,
+			<0x0 0x15560000 0x200>,
+			<0x0 0x15861B20 0x10>;
+			/*<0x0 0x14820000 0x4000>,
+			<0x0 0x14800000 0x1820>,
+			<0x0 0x14830000 0x10>,
+			<0x0 0x14840000 0x10>,
+			<0x0 0x14860000 0x50>,
+			<0x0 0x14A50000 0x10>,
+			<0x0 0x14A60000 0x10>,
+			<0x0 0x14A70000 0x10>,
+			<0x0 0x14A80000 0x10>,
+			<0x0 0x14A90000 0x10>,
+			<0x0 0x14AA0000 0x10>,
+			<0x0 0x14AB0000 0x10>,
+			<0x0 0x14AC0000 0x10>;
+			<0x0 0x14AD0000 0x1000>;*/
+		reg-names = "mailbox", "sram", "dumpgpr", "baaw_c_chub",
+			    "baaw_ld_chub", "upmu", "chub_out";
+			    /*"sysreg_chub",
+			    "chub_dump_cmu", "chub_dump_wdt",
+			    "chub_dump_timer", "chub_dump_pwm",
+			    "chub_dump_usi0", "chub_dump_usi1",
+			    "chub_dump_usi2", "chub_dump_spi_i2c1",
+			    "chub_dump_i2c", "chub_dump_i3c",
+			    "chub_dump_spi_i2c0", "chub_dump_usi3",
+			    "chub_dump_gpio";*/
+		baaw,names = "baaw_c_chub", "baaw_ld_chub";
+		baaw,sizes = < 4 1 >;
+		baaw,values = < 0x0  0x60000 0x100000 0x60000 0x0
+				0x70 0x14E00 0x15200 0x14E00 0x80000003
+				0x90 0x50000 0x50001 0x50000 0x80000003
+				0xA0 0x40A60 0x40A70 0x15560 0x80000003
+				0x80 0x50000 0x50001 0x10000 0x80000003 >;
+		smc-required = "true";
+		multi-os = "disabled";
+		hardfault-debug = "enabled";
+		/* chub dfs governer */
+		chub-dfs-gov = "disabled";
+		use_alive_mct;
+		chub_mct_alive_base = <0x15890000>;
+		chub_mct_frc_offset = <0x110>;
+		clocks =
+			<&clock DOUT_CLKALIVE_CHUBVTS_NOC>,
+			<&clock DOUT_CLKALIVE_CHUB_PERI>;
+		clock-names =
+			"chub_bus",
+			"chub_peri";
+	};
+};

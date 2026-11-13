@@ -1,0 +1,73 @@
+load("//build/kernel/kleaf:kernel.bzl", "kernel_module")
+
+filegroup(
+    name = "sec_debug.kconfig",
+    srcs = ["src/Kconfig"],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+filegroup(
+    name = "sec_debug_headers",
+    srcs = glob([
+        "include/**/*.h",
+    ] + [
+        "Makefile.include",
+    ]),
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+filegroup(
+    name = "sec_debug_common_sources",
+    srcs = glob([
+        "Kbuild",
+        "include/**/*.h",
+        "src/Makefile",
+        "src/*.h",
+        "src/*.c",
+    ]),
+)
+
+kernel_module(
+    name = "sec_debug_modules",
+     srcs = [
+        ":sec_debug_common_sources",
+        "//exynos/soc-series/common:exynos_soc_header",
+        "//exynos/external-modules/bsp/class:sec_class_fvc_headers",
+        "//exynos/external-modules/bsp/reboot/6.6:sec_reboot_fvc_headers",
+    ],
+    outs = [
+        "sec_debug_mode.ko",
+        "sec_debug_base_early.ko",
+        "sec_debug.ko",
+        "sec_debug_extra_info.ko",
+        "sec_debug_hardlockup_info.ko",
+        "sec_debug_test.ko",
+        "sec_debug_hw_param.ko",
+        "softdog.ko",
+        "sec_debug_sched_report.ko",
+        "sec_debug_softdog.ko",
+        "sec_debug_slab_info.ko",
+        "sec_debug_stacktrace.ko",
+        "sec_debug_kerror_report.ko",
+        "sec_debug_wdd_info.ko",
+        "sec_debug_dprt.ko",
+        "sec_debug_dtask.ko",
+        "sec_debug_dprm.ko",
+        "sec_debug_reset_reason.ko",
+        "sec_debug_sched_info.ko",
+    ],
+    deps = [
+        "//exynos/soc-series/common:exynos_soc_module",
+        "//exynos/external-modules/bsp/class:sec_class_fvc",
+        "//exynos/external-modules/bsp/reboot/6.6:sec_reboot_fvc",
+    ],
+    kernel_build = "//exynos/soc-series/common:exynos_kernel_build",
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+

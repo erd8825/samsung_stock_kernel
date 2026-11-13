@@ -1,0 +1,1 @@
+obj-$(CONFIG_DB7F2010B_TEST)		+= db7f2010b_test.o

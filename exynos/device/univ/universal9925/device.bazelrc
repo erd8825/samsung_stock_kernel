@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+common --//exynos/soc-series/common:exynos_kernel_build=//exynos/device/univ/universal9925:universal9925
+common --//exynos/soc-series/common:exynos_soc_header=//exynos/soc-series/pamir-android15:exynos.soc_headers
+
+build:universal9925_eng --//exynos/soc-series/common:exynos_build_variant=eng
+build:universal9925_eng --//exynos/soc-series/common:exynos_soc_module=//exynos/soc-series/pamir-android15:s5e9925_soc_module.eng
+build:universal9925_eng --defconfig_fragment=//exynos/soc-series/pamir-android15:arch/arm64/configs/base_kernel_eng.fragment
+build:universal9925_eng --notrim
+
+build:universal9925_userdebug --//exynos/soc-series/common:exynos_build_variant=userdebug
+build:universal9925_userdebug --//exynos/soc-series/common:exynos_soc_module=//exynos/soc-series/pamir-android15:s5e9925_soc_module.userdebug
+build:universal9925_userdebug --defconfig_fragment=//exynos/soc-series/pamir-android15:arch/arm64/configs/base_kernel_userdebug.fragment
+build:universal9925_userdebug --notrim
+
+build:universal9925_user --//exynos/soc-series/common:exynos_build_variant=user
+build:universal9925_user --//exynos/soc-series/common:exynos_soc_module=//exynos/soc-series/pamir-android15:s5e9925_soc_module.user
+build:universal9925_user --notrim
+
+build:universal9925_abi --//exynos/soc-series/common:exynos_build_variant=user
+build:universal9925_abi --//exynos/soc-series/common:exynos_soc_module=//exynos/soc-series/pamir-android15:s5e9925_soc_module.user
+build:universal9925_abi --//exynos/soc-series/common:exynos_abi_update=yes

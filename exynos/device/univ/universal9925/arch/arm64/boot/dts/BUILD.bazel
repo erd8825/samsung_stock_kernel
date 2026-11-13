@@ -1,0 +1,33 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+
+load("//build/kernel/kleaf:kernel.bzl", "kernel_dtstree")
+
+filegroup(
+    name = "universal9925_dt_sources",
+    srcs = glob([
+            "univ/**/*.dtsi",
+            "univ/**/*.dtso",
+            "exynos-base-dts/**/*.dts",
+            "exynos-base-dts/**/*.dtsi",
+        ],
+    ),
+    visibility = [
+        "//exynos/device:__subpackages__",
+    ],
+)
+
+kernel_dtstree(
+    name = "universal9925_dt",
+    srcs = glob([
+            "Makefile",
+            "univ/Makefile",
+            "exynos-base-dts/Makefile",
+    ]) + [
+        "universal9925_dt_sources",
+        "//exynos/soc-series/pamir-android15:exynos.dt-bindings",
+    ],
+    visibility = [
+        "//exynos/device/univ/universal9925:__pkg__",
+    ],
+)
+

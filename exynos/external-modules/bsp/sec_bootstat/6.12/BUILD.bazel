@@ -1,0 +1,26 @@
+load(
+    "//build/kernel/kleaf:kernel.bzl",
+    "ddk_module",
+)
+load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
+
+package(default_visibility = [
+    "//exynos:__subpackages__",
+])
+
+ddk_module(
+    name = "sec_bootstat",
+    srcs = [
+      "sec_bootstat.c",
+      "sec_bootstat.h",
+    ],
+    out = "sec_bootstat.ko",
+    kernel_build = "//exynos/soc-series/common:exynos_kernel_build",
+    deps = [
+        "//common:all_headers_aarch64",
+        "//exynos/external-modules/bsp/class:sec_class",
+        "//exynos/soc-series/common/drivers/soc/samsung/exynos/debug:dss",
+        "//exynos/soc-series/common:exynos_soc_ddk_header",
+    ],
+)
+

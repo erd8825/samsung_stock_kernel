@@ -1,0 +1,49 @@
+load(
+    "//build/kernel/kleaf:kernel.bzl",
+    "ddk_module",
+)
+load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
+
+package(
+    default_visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+filegroup(
+    name = "bsp_factory.kconfig",
+    srcs = [ "Kconfig", ],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+bool_flag(
+    name = "factory",
+    build_setting_default = False,
+)
+
+config_setting(
+    name = "factory_build",
+    flag_values = {
+        ":factory": "True",
+    }
+)
+
+ddk_module(
+    name = "sec_reloc_gpio",
+    srcs = [
+      "sec_reloc_gpio.c",
+      "builder_pattern.h",
+      "jump_table_target.h",
+    ],
+    out = "sec_reloc_gpio.ko",
+    kernel_build = "//exynos/soc-series/common:exynos_kernel_build",
+    deps = [
+        "//common:all_headers_aarch64",
+        "//exynos/soc-series/common:exynos_soc_ddk_header",
+        "//exynos/external-modules/bsp/class:sec_class",
+        "//exynos/soc-series/common/drivers/soc/samsung/exynos/cal-if:cmupmucal",
+    ],
+)
+

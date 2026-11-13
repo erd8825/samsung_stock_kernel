@@ -1,0 +1,5 @@
+source "$(KCONFIG_EXT_MODULES_PREFIX)bsp/class/Kconfig"
+source "$(KCONFIG_EXT_MODULES_PREFIX)bsp/reboot/6.6/Kconfig"
+source "$(KCONFIG_EXT_MODULES_PREFIX)bsp/factory/src/Kconfig"
+source "$(KCONFIG_EXT_MODULES_PREFIX)bsp/debug/6.6_fvc/src/Kconfig"
+source "$(KCONFIG_EXT_MODULES_PREFIX)camera/camera/Kconfig"

@@ -1,0 +1,360 @@
+load("//build/kernel/kleaf:kernel.bzl",
+    "ddk_module",
+)
+
+filegroup(
+    name = "sec_debug_common_sources",
+    srcs = glob([
+        "src/sec_debug_internal.h",
+    ]),
+)
+
+ddk_module(
+    name = "sec_debug_dprt",
+    srcs = [
+        "src/sec_debug_dprt.c",
+        ":sec_debug_common_sources"
+    ],
+    out = "sec_debug_dprt.ko",
+    kconfig = "src/Kconfig",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+ddk_module(
+    name = "sec_debug_base_early",
+    srcs = [
+        "src/sec_debug_base_early.c",
+        ":sec_debug_common_sources"
+    ],
+    out = "sec_debug_base_early.ko",
+    kconfig = "src/Kconfig",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    deps = [
+        "//exynos/soc-series/common:exynos_soc_ddk_header",
+        "//exynos/soc-series/common/drivers/soc/samsung/exynos/debug:dss",
+    ],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+ddk_module(
+    name = "sec_debug_base",
+    srcs = [
+        "src/sec_debug_base.c",
+        "src/sec_dump_sink.c",
+        ":sec_debug_common_sources"
+    ],
+    out = "sec_debug.ko",
+    kconfig = "src/Kconfig",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    deps = [
+        ":sec_debug_base_early",
+        ":sec_debug_mode",
+        "//exynos/soc-series/common:exynos_soc_ddk_header",
+        "//exynos/soc-series/common/drivers/soc/samsung/exynos/debug:hardlockup-watchdog",
+        "//exynos/soc-series/common/drivers/soc/samsung/exynos/pmu-if:exynos-pmu-if",
+        "//exynos/external-modules/bsp/reboot/6.12:sec_reboot",
+    ],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+ddk_module(
+    name = "sec_debug_mode",
+    srcs = [
+        "src/sec_debug_mode.c",
+        ":sec_debug_common_sources"
+    ],
+    out = "sec_debug_mode.ko",
+    hdrs = ["include/linux/sec_debug.h"],
+    includes = ["include"],
+    kconfig = "src/Kconfig",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+ddk_module(
+    name = "softdog_ext",
+    srcs = [
+        "src/softdog_ext.c",
+    ],
+    out = "softdog.ko",
+    hdrs = ["include/linux/sec_debug.h"],
+    includes = ["include"],
+    kconfig = "src/Kconfig",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    deps = [
+        ":sec_debug_mode",
+    ],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+ddk_module(
+    name = "sec_debug_softdog",
+    srcs = [
+        "src/sec_debug_softdog.c",
+        ":sec_debug_common_sources"
+    ],
+    out = "sec_debug_softdog.ko",
+    hdrs = ["include/linux/sec_debug.h"],
+    includes = ["include"],
+    kconfig = "src/Kconfig",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    deps = [
+        ":softdog_ext",
+        ":sec_debug_stacktrace",
+    ],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+ddk_module(
+    name = "sec_debug_stacktrace",
+    srcs = [
+        "src/sec_debug_stacktrace.c",
+        ":sec_debug_common_sources"
+    ],
+    out = "sec_debug_stacktrace.ko",
+    kconfig = "src/Kconfig",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+ddk_module(
+    name = "sec_debug_wdd_info",
+    srcs = [
+        "src/sec_debug_wdd_info.c",
+        ":sec_debug_common_sources"
+    ],
+    out = "sec_debug_wdd_info.ko",
+    kconfig = "src/Kconfig",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    deps = [
+        ":sec_debug_base_early",
+        "//exynos/soc-series/common/drivers/watchdog:s3c2410-wdt-ext",
+    ],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+ddk_module(
+    name = "sec_debug_test",
+    srcs = [
+        "src/sec_debug_test.c",
+        ":sec_debug_common_sources"
+    ],
+    out = "sec_debug_test.ko",
+    hdrs = ["include/linux/sec_debug.h"],
+    includes = ["include"],
+    kconfig = "src/Kconfig",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    deps =[
+        ":sec_debug_base",
+        ":sec_debug_extra_info",
+        "//exynos/soc-series/common:exynos_soc_ddk_header",
+        "//exynos/soc-series/common/drivers/soc/samsung/exynos/debug:dss",
+        "//exynos/soc-series/common/drivers/soc/samsung/exynos/pmu-if:exynos-pmu-if",
+        "//exynos/soc-series/common/drivers/soc/samsung/exynos/pm_qos:exynos-pm-qos",
+    ],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+ddk_module(
+    name = "sec_debug_dtask",
+    srcs = [
+        "src/sec_debug_dtask.c",
+        ":sec_debug_common_sources"
+    ],
+    out = "sec_debug_dtask.ko",
+    kconfig = "src/Kconfig",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    deps =[
+        "//exynos/soc-series/common:exynos_soc_ddk_header",
+        "//exynos/soc-series/common/drivers/soc/samsung/exynos/debug:dss",
+    ],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+ddk_module(
+    name = "sec_debug_extra_info",
+    srcs = [
+        "src/sec_debug_extra_info.c",
+        ":sec_debug_common_sources"
+    ],
+    out = "sec_debug_extra_info.ko",
+    hdrs = [
+        "src/sec_debug_extra_info_keys.c",
+        "include/linux/sec_debug.h",
+    ],
+    includes = ["include"],
+    kconfig = "src/Kconfig",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    deps = [
+        ":sec_debug_base_early",
+        ":sec_debug_base",
+        "//exynos/soc-series/common:exynos_soc_ddk_header",
+        "//exynos/soc-series/common/drivers/soc/samsung/exynos/debug:dss",
+    ],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+ddk_module(
+    name = "sec_debug_hardlockup_info",
+    srcs = [
+        "src/sec_debug_hardlockup_info.c",
+        ":sec_debug_common_sources"
+    ],
+    out = "sec_debug_hardlockup_info.ko",
+    kconfig = "src/Kconfig",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    deps =[
+        ":sec_debug_extra_info",
+        "//exynos/soc-series/common:exynos_soc_ddk_header",
+        "//exynos/soc-series/common/drivers/soc/samsung/exynos/debug:dss",
+        "//exynos/soc-series/common/drivers/soc/samsung/exynos/debug:ehld",
+        "//exynos/soc-series/common/drivers/soc/samsung/exynos/debug:hardlockup-watchdog",
+        "//exynos/soc-series/common/drivers/pinctrl/samsung:pinctrl-samsung-ext.ddk_header",
+    ],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+ddk_module(
+    name = "sec_debug_sched_info",
+    srcs = [
+        "src/sec_debug_sched_info.c",
+        ":sec_debug_common_sources"
+    ],
+    out = "sec_debug_sched_info.ko",
+    kconfig = "src/Kconfig",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    deps =[
+        ":sec_debug_stacktrace",
+        "//exynos/soc-series/common:exynos_soc_ddk_header",
+        "//exynos/soc-series/common/drivers/soc/samsung/exynos/debug:dss",
+    ],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+ddk_module(
+    name = "sec_debug_sched_report",
+    srcs = [
+        "src/sec_debug_sched_report.c",
+        ":sec_debug_common_sources"
+    ],
+    out = "sec_debug_sched_report.ko",
+    kconfig = "src/Kconfig",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    deps =[
+        "//exynos/soc-series/common:exynos_soc_ddk_header",
+        "//exynos/soc-series/common/drivers/soc/samsung/exynos/debug:dss",
+    ],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+ddk_module(
+    name = "sec_debug_kerror_report",
+    srcs = [
+        "src/sec_debug_kerror_report.c",
+        ":sec_debug_common_sources"
+    ],
+    out = "sec_debug_kerror_report.ko",
+    kconfig = "src/Kconfig",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+ddk_module(
+    name = "sec_debug_dprm",
+    srcs = [
+        "src/sec_debug_dprm.c",
+        ":sec_debug_common_sources"
+    ],
+    out = "sec_debug_dprm.ko",
+    kconfig = "src/Kconfig",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    deps =[
+        ":sec_debug_base_early",
+    ],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+ddk_module(
+    name = "sec_debug_reset_reason",
+    srcs = [
+        "src/sec_debug_reset_reason.c",
+        ":sec_debug_common_sources"
+    ],
+    out = "sec_debug_reset_reason.ko",
+    kconfig = "src/Kconfig",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    deps =[
+        ":sec_debug_extra_info",
+    ],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+ddk_module(
+    name = "sec_debug_hw_param",
+    srcs = [
+        "src/sec_debug_hw_param.c",
+        ":sec_debug_common_sources"
+    ],
+    out = "sec_debug_hw_param.ko",
+    kconfig = "src/Kconfig",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    deps =[
+        ":sec_debug_extra_info",
+        "//exynos/external-modules/bsp/class:sec_class",
+        "//exynos/soc-series/common/drivers/soc/samsung/exynos/cal-if:cmupmucal",
+    ],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+ddk_module(
+    name = "sec_debug_slab_info",
+    srcs = [
+        "src/sec_debug_slab_info.c",
+        ":sec_debug_common_sources"
+    ],
+    out = "sec_debug_slab_info.ko",
+    kconfig = "src/Kconfig",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    deps =[
+    ],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)

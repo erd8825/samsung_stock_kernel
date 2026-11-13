@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HDR_MODULE_SPECIFIERS>
+    <hdr-module-specifier layer="0,1,2,3,4,5,6,7">
+        <gm-module-specifier>
+            <mod-en>gm-en</mod-en>
+            <coef-fmt>i,v,2,16,0</coef-fmt>
+            <coef>gm</coef>
+        </gm-module-specifier>
+    </hdr-module-specifier>
+</HDR_MODULE_SPECIFIERS>

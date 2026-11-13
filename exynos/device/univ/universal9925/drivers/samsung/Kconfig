@@ -1,0 +1,48 @@
+# drivers/samsung/debug/Kconfig
+#
+# Copyright (c) 2010-2020 Samsung Electronics Co., Ltd.
+#               http://www.samsung.com/
+#
+# Licensed under GPLv2
+
+menu "Samsung TN Extension Feature"
+config SEC_EXT
+	bool "Samsung TN extension Feature"
+	default y
+
+menuconfig SEC_DEBUG
+	tristate "Enable Samsung Debugging features"
+	default n
+
+config SEC_REBOOT
+	tristate "Enable TN reboot features"
+	depends on SEC_DEBUG
+	default n
+	help
+	  Samsung TN reboot extension Feature. Do additional work when reboot.
+
+config SEC_KEY_NOTIFIER
+	tristate "Enable Samsung key event notifier"
+	depends on SEC_DEBUG
+	default n
+	help
+	  Samsung Key input event notifier
+
+config SEC_PARAM
+	tristate "Enable Param modification"
+	depends on SEC_DEBUG
+	default n
+	help
+	  Samsung TN Param Feature.
+
+
+config DRV_SAMSUNG
+	tristate "Samsung sec class/sysfs Feature"
+	depends on SEC_DEBUG
+	default n
+	help
+	  Samsung sysfs name 'sec' directory create.
+
+endmenu
+source "$(KCONFIG_EXT_PREFIX)drivers/samsung/misc/Kconfig"
+

@@ -1,0 +1,6 @@
+# SPDX-License-Identifier: GPL-2.0
+#
+# Makefile for PMIC RTC class/drivers.
+#
+
+obj-$(CONFIG_RTC_S2MPS25)   += rtc-s2mps25.o

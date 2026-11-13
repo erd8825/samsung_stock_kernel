@@ -1,0 +1,2 @@
+#============= rild ==============
+allow rild exynos-thermald:binder call;

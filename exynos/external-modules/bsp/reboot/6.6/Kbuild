@@ -1,0 +1,3 @@
+ccflags-y += -I$(srctree)/$(src)
+obj-$(CONFIG_SEC_REBOOT)	+= sec_reboot.o
+

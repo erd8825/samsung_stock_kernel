@@ -1,0 +1,18 @@
+# SPDX-License-Identifier: GPL-2.0-only
+#
+# SAMSUNG PINCTRL infrastructure and pmic drivers
+#
+
+config PINCTRL_SAMSUNG_S2MPS26
+	tristate "SAMSUNG PMIC pin controller driver for s5e9925"
+	help
+	 This is the pinctrl, pinmux, pinconf and gpiolib driver for the
+	 Samsung GPIO found in the Samsung PMIC's chips, which are using
+	 SPMI for communication with SoC.
+
+config PINCTRL_SAMSUNG_S2MPM07
+	tristate "SAMSUNG PMIC pin controller driver for s5e9925"
+	help
+	 This is the pinctrl, pinmux, pinconf and gpiolib driver for the
+	 Samsung GPIO found in the Samsung PMIC's chips, which are using
+	 SPMI for communication with SoC.

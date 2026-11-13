@@ -1,0 +1,11 @@
+# SoC PMIC
+obj-$(CONFIG_MFD_S2MPS25)		+= s2mps25_mfd.o
+s2mps25_mfd-$(CONFIG_MFD_S2MPS25)	+= s2mps25_core.o s2mps25_irq.o
+obj-$(CONFIG_MFD_S2MPS26)		+= s2mps26_mfd.o
+s2mps26_mfd-$(CONFIG_MFD_S2MPS26)	+= s2mps26_core.o s2mps26_notifier.o
+obj-$(CONFIG_MFD_S2MPM07)		+= s2mpm07_mfd.o
+s2mpm07_mfd-$(CONFIG_MFD_S2MPM07)	+= s2mpm07_core.o
+
+# Etc PMIC
+obj-$(CONFIG_MFD_S2MPB02)		+= s2mpb02_mfd.o
+s2mpb02_mfd-$(CONFIG_MFD_S2MPB02)	+= s2mpb02-core.o s2mpb02-irq.o

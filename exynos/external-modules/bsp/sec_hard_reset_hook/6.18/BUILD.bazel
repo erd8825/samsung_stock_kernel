@@ -1,0 +1,22 @@
+load(
+    "//build/kernel/kleaf:kernel.bzl",
+    "ddk_module",
+)
+
+package(default_visibility = [
+    "//exynos:__subpackages__",
+])
+
+ddk_module(
+    name = "sec_hard_reset_hook",
+    srcs = [
+      "sec_hard_reset_hook.c",
+    ],
+    out = "sec_hard_reset_hook.ko",
+    kernel_build = "//exynos/soc-series/common:exynos_kernel_build",
+    deps = [
+        "//common:all_headers_aarch64",
+        "//exynos/external-modules/bsp/sec_key_notifier/6.12:sec_key_notifier",
+    ],
+)
+

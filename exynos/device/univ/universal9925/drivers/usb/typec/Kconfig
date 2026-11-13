@@ -1,0 +1,11 @@
+# drivers/usb/typec/Kconfig
+#
+# Copyright (c) 2010-2020 Samsung Electronics Co., Ltd.
+#               http://www.samsung.com/
+#
+# Licensed under GPLv2
+
+source "$(KCONFIG_EXT_PREFIX)drivers/usb/typec/common/Kconfig"
+source "$(KCONFIG_EXT_PREFIX)drivers/usb/typec/manager/Kconfig"
+source "$(KCONFIG_EXT_PREFIX)drivers/usb/typec/maxim/Kconfig"
+

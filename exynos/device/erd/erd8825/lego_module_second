@@ -1,0 +1,3 @@
+drivers/sensorhub/shub.ko
+drivers/sensorhub/utility/sensor_core.ko
+drivers/sensors_lego/isg6320.ko

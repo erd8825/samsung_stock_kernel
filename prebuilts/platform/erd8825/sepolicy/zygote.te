@@ -1,0 +1,2 @@
+#============= zygote ==============
+dontaudit zygote self:capability dac_read_search;

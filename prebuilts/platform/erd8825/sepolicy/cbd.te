@@ -1,0 +1,13 @@
+#============= cbd ==============
+allow cbd efs_file:lnk_file read;
+allow cbd mnt_vendor_file:dir search;
+allow cbd self:capability2 block_suspend;
+allow cbd sysfs_wake_lock:file { open append };
+allow cbd proc_cmdline:file { open read };
+allow cbd self:capability setuid;
+allow cbd vendor_log_file:dir { write search create add_name getattr };
+allow cbd vendor_log_file:file { create open append setattr write };
+allow cbd vendor_shell_exec:file execute_no_trans;
+
+dontaudit cbd self:capability dac_read_search;
+dontaudit cbd self:capability dac_override;

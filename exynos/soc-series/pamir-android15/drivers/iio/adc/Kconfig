@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: GPL-2.0-only
+#
+# SAMSUNG PMIC ADC drivers
+#
+# When adding new entries keep the list in alphabetical order
+
+config S2MPS25_ADC
+	tristate "S2MPS25 ADC driver support for 9925"
+	depends on MFD_S2MPS25
+	help
+	  Core support for the ADC block found in the Samsung PMIC series
+	  for drivers such as the touchscreen and hwmon to use to share
+	  this resource.
+
+	  To compile this driver as a module, choose M here: the module will be
+	  called s2mps25_adc.

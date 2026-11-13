@@ -1,0 +1,46 @@
+type exynos-thermald, domain;
+type exynos-thermald_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(exynos-thermald);
+
+allow exynos-thermald sysfs:chr_file rw_file_perms;
+allow exynos-thermald sysfs:dir { read search open };
+allow exynos-thermald sysfs:file { read write open getattr };
+
+allow exynos-thermald storage_file:file { read write open };
+allow exynos-thermald storage_file:dir { read search open };
+
+allow exynos-thermald sysfs_thermal:dir { read search open };
+allow exynos-thermald sysfs_thermal:file { read write open getattr };
+
+allow exynos-thermald sysfs_devices_system_cpu:dir { read search open };
+allow exynos-thermald sysfs_devices_system_cpu:file rw_file_perms;
+
+allow exynos-thermald sysfs_batteryinfo:dir { search read open };
+allow exynos-thermald sysfs_batteryinfo:file { read write open getattr };
+
+allow exynos-thermald sysfs_vendor_display:dir { search read open };
+allow exynos-thermald sysfs_vendor_display:file { read open write getattr };
+
+allow exynos-thermald ems_file:dir { search read open };
+allow exynos-thermald ems_file:file { read open write getattr };
+
+allow exynos-thermald vendor_data_file:file { open read getattr write create };
+allow exynos-thermald vendor_data_file:dir { open read search add_name write };
+
+allow exynos-thermald thermal_data_file:file { open read getattr write create };
+allow exynos-thermald thermal_data_file:dir { open read search write add_name };
+
+allow exynos-thermald pm_qos_file:chr_file rw_file_perms;
+
+allow exynos-thermald hal_exynos_rild_hwservice:hwservice_manager find;
+allow exynos-thermald rild:binder { transfer call };
+allow exynos-thermald hwservicemanager_prop:file { getattr open read map };
+allow exynos-thermald hwservicemanager:binder { call transfer };
+
+allow hwservicemanager exynos-thermald:dir search;
+allow hwservicemanager exynos-thermald:file { read open };
+allow hwservicemanager exynos-thermald:binder { call transfer };
+allow hwservicemanager exynos-thermald:process getattr;
+
+dontaudit exynos-thermald self:capability dac_override;
+

@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: GPL-2.0
+#
+# Makefile for IIO ADC drivers
+#
+# When adding new entries keep the list in alphabetical order
+
+obj-$(CONFIG_S2MPS25_ADC) += s2mps25_adc.o

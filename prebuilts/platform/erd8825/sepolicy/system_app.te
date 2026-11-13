@@ -1,0 +1,34 @@
+#============= system_app ==============
+allow system_app cbd:dir { getattr search };
+allow system_app init:dir getattr;
+allow system_app vendor_install_recovery:dir getattr;
+allow system_app kernel:dir getattr;
+#allow system_app kernel:system syslog_read;
+allow system_app mediacodec:dir getattr;
+allow system_app mediaprovider:dir getattr;
+allow system_app platform_app:dir getattr;
+allow system_app proc_timer:file read;
+allow system_app radio:dir getattr;
+allow system_app rild:dir getattr;
+allow system_app secure_element:dir getattr;
+#allow system_app statsd:dir getattr;
+#allow system_app storaged:dir getattr;
+#allow system_app system_data_file:dir write;
+allow system_app traceur_app:dir getattr;
+allow system_app untrusted_app_25:dir getattr;
+allow system_app vendor_init:dir getattr;
+allow system_app wificond:dir getattr;
+allow system_app zygote:dir getattr;
+#allow system_app apk_data_file:dir write;
+allow system_app rootfs:dir read;
+
+allow system_app hal_drm_default:dir getattr;
+allow system_app hal_sensors_default:dir getattr;
+allow system_app init:dir search;
+allow system_app kernel:dir search;
+allow system_app mediacodec:dir search;
+allow system_app netd:dir getattr;
+allow system_app platform_app:dir getattr;
+allow system_app su:dir getattr;
+allow system_app untrusted_app:dir getattr;
+allow system_app zygote:dir search;

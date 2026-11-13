@@ -1,0 +1,39 @@
+load("//build/kernel/kleaf:kernel.bzl", "kernel_module")
+
+package(default_visibility = [
+    "//exynos:__subpackages__",
+])
+
+filegroup(
+    name = "sec_key_notifier_fvc.kconfig",
+    srcs = ["Kconfig"],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+filegroup(
+    name = "sec_key_notifier_fvc_headers",
+    srcs = [
+        "sec_key_notifier.h",
+        "Makefile.include",
+    ],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+kernel_module(
+    name = "sec_key_notifier_fvc",
+     srcs = [
+        "Makefile",
+        "Kbuild",
+        "sec_key_notifier.c",
+        "sec_key_notifier.h",
+    ],
+    outs = ["sec_key_notifier.ko"],
+    kernel_build = "//exynos/soc-series/common:exynos_kernel_build",
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)

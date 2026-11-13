@@ -1,0 +1,11 @@
+# Copyright (c) 2010-2026 Samsung Electronics Co., Ltd.
+#               http://www.samsung.com/
+#
+# Licensed under GPLv2
+
+config SEC_REBOOT
+	tristate "Enable Samsung reboot features"
+	default n
+	help
+	  Samsung TN reboot extension Feature. Do additional work when reboot.
+

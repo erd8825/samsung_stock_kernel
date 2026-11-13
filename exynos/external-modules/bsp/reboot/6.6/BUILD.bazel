@@ -1,0 +1,38 @@
+load("//build/kernel/kleaf:kernel.bzl", "kernel_module")
+
+filegroup(
+    name = "sec_reboot_fvc.kconfig",
+    srcs = ["Kconfig"],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+filegroup(
+    name = "sec_reboot_fvc_headers",
+    srcs = [
+        "sec_reboot.h",
+        "Makefile.include",
+    ],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+kernel_module(
+    name = "sec_reboot_fvc",
+     srcs = [
+        "Makefile",
+        "Kbuild",
+        "sec_reboot.c",
+        "sec_reboot.h",
+        "//exynos/soc-series/common:exynos_soc_header",
+    ],
+    outs = ["sec_reboot.ko"],
+    deps = ["//exynos/soc-series/common:exynos_soc_module"],
+    kernel_build = "//exynos/soc-series/common:exynos_kernel_build",
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+

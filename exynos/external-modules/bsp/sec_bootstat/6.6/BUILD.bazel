@@ -1,0 +1,27 @@
+load("//build/kernel/kleaf:kernel.bzl", "kernel_module")
+
+package(default_visibility = [
+    "//exynos:__subpackages__",
+])
+
+kernel_module(
+    name = "sec_bootstat_fvc",
+     srcs = [
+        "Makefile",
+        "Kbuild",
+        "sec_bootstat.c",
+        "sec_bootstat.h",
+        "//exynos/soc-series/common:exynos_soc_header",
+        "//exynos/external-modules/bsp/class:sec_class_fvc_headers",
+    ],
+    outs = ["sec_bootstat.ko"],
+    deps = [
+        "//exynos/soc-series/common:exynos_soc_module",
+        "//exynos/external-modules/bsp/class:sec_class_fvc",
+    ],
+    kernel_build = "//exynos/soc-series/common:exynos_kernel_build",
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+

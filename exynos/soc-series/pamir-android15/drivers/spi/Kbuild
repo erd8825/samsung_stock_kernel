@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: GPL-2.0
+#
+# Makefile for kernel External SPI drivers.
+#
+
+obj-$(CONFIG_SPI_S3C64XX_EXT)		+= spi-s3c64xx-ext.o
+

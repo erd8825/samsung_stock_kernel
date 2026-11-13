@@ -1,0 +1,6 @@
+comment "Samsung sysfs Feature"
+config DRV_SAMSUNG
+	tristate "Samsung sec class/sysfs Feature"
+	default n
+	help
+	  Samsung sysfs name 'sec' directory create.

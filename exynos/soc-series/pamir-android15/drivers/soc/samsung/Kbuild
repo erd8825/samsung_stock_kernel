@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: GPL-2.0-only
+
+# CPUHP
+obj-$(CONFIG_EXYNOS_CPUHP)      += exynos-cpuhp.o
+
+# CPUIDLE
+obj-$(CONFIG_EXYNOS_CPUPM)      += exynos-cpupm.o
+
+# AFM
+obj-$(CONFIG_EXYNOS_AFM)      += exynos-afm.o
+
+# UFCC
+obj-$(CONFIG_EXYNOS_UFCC)      += exynos-ufcc.o

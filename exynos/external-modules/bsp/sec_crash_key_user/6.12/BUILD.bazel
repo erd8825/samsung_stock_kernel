@@ -1,0 +1,22 @@
+load(
+    "//build/kernel/kleaf:kernel.bzl",
+    "ddk_module",
+)
+
+package(default_visibility = [
+    "//exynos:__subpackages__",
+])
+
+ddk_module(
+    name = "sec_crash_key_user",
+    srcs = [
+      "sec_crash_key_user.c",
+    ],
+    out = "sec_crash_key_user.ko",
+    kernel_build = "//exynos/soc-series/common:exynos_kernel_build",
+    deps = [
+        "//common:all_headers_aarch64",
+        "//exynos/external-modules/bsp/sec_key_notifier/6.12:sec_key_notifier",
+    ],
+)
+

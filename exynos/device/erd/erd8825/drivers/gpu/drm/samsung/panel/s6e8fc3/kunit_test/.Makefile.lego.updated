@@ -1,0 +1,1 @@
+obj-$(CONFIG_S6E8FC3_TEST)		+= s6e8fc3_test.o

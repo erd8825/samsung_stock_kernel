@@ -1,0 +1,6 @@
+# SPDX-License-Identifier: GPL-2.0
+#
+# Makefile for the kernel watchdog device drivers.
+#
+
+obj-$(CONFIG_S3C2410_WATCHDOG_EXT) += s3c2410_wdt_ext.o

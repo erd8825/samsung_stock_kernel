@@ -1,0 +1,11 @@
+# sysfs
+genfscon sysfs /devices/platform/15970000.speedy/i2c-15/15-0000/s2mps19-rtc/rtc                         u:object_r:sysfs_rtc:s0
+
+genfscon sysfs /devices/platform/15d60000.hsi2c/i2c-13/13-0066/max77705-charger/power_supply    u:object_r:sysfs_batteryinfo:s0
+genfscon sysfs /devices/platform/15d60000.hsi2c/i2c-13/13-0066/max77705-fuelgauge/power_supply    u:object_r:sysfs_batteryinfo:s0
+genfscon sysfs /sys/devices/platform/15d60000.hsi2c/i2c-14/14-0066/max77705-charger/power_supply    u:object_r:sysfs_batteryinfo:s0
+genfscon sysfs /sys/devices/platform/15d60000.hsi2c/i2c-14/14-0066/max77705-fuelgauge/power_supply    u:object_r:sysfs_batteryinfo:s0
+
+genfscon sysfs /devices/platform/npu@17800000/version    u:object_r:sysfs_npu_version:s0
+# sysfs_net
+genfscon sysfs /devices/platform/109f0000.scsc_wifibt/net                     u:object_r:sysfs_net:s0

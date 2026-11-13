@@ -1,0 +1,57 @@
+load("//build/kernel/kleaf:kernel.bzl",
+    "ddk_module",
+    "kernel_module",
+)
+
+ddk_module(
+    name = "sec_class",
+    srcs = [
+      "sec_class.c",
+    ],
+    hdrs = [
+      "include/linux/sec_class.h",
+    ],
+    includes = ["include"],
+    kconfig = ":Kconfig",
+    defconfig = ":defconfig",
+    out = "sec_class.ko",
+    kernel_build="//exynos/soc-series/common:exynos_kernel_build",
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+filegroup(
+    name = "sec_class_fvc.kconfig",
+    srcs = ["Kconfig"],
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+filegroup(
+    name = "sec_class_fvc_headers",
+    srcs = glob([
+        "include/**/*.h",
+    ] + [
+        "Makefile.include",
+    ]),
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)
+
+kernel_module(
+    name = "sec_class_fvc",
+     srcs = [
+        "Makefile",
+        "Kbuild",
+        "sec_class.c",
+        "include/linux/sec_class.h",
+    ],
+    outs = ["sec_class.ko"],
+    kernel_build = "//exynos/soc-series/common:exynos_kernel_build",
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)

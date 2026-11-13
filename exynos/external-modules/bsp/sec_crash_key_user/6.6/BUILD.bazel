@@ -1,0 +1,26 @@
+load(
+    "//build/kernel/kleaf:kernel.bzl",
+    "kernel_module",
+)
+
+package(default_visibility = [
+    "//exynos:__subpackages__",
+])
+
+kernel_module(
+    name = "sec_crash_key_user_fvc",
+     srcs = [
+        "Makefile",
+        "Kbuild",
+        "sec_crash_key_user.c",
+        "//exynos/external-modules/bsp/sec_key_notifier/6.6:sec_key_notifier_fvc_headers",
+    ],
+    outs = ["sec_crash_key_user.ko"],
+    deps = [
+        "//exynos/external-modules/bsp/sec_key_notifier/6.6:sec_key_notifier_fvc",
+    ],
+    kernel_build = "//exynos/soc-series/common:exynos_kernel_build",
+    visibility = [
+        "//exynos:__subpackages__",
+    ],
+)

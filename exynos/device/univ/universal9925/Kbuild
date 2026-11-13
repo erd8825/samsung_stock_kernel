@@ -1,0 +1,16 @@
+subdir-ccflags-y += \
+		-I$(srctree)/$(src)/include \
+		-I$(srctree)/$(src)/include/uapi \
+
+obj-y += drivers/input/touchscreen/sec_input/
+obj-y += drivers/input/touchscreen/stm/stm_spi/
+# IFPMIC max77705
+obj-y += drivers/usb/notify/
+obj-y += drivers/battery/
+obj-y += drivers/mfd/max77705/
+obj-y += drivers/muic-mcd/
+obj-y += drivers/samsung/
+obj-y += drivers/staging/android/switch/
+obj-y += drivers/usb/typec/common/
+obj-y += drivers/usb/typec/manager/
+obj-y += drivers/usb/typec/maxim/

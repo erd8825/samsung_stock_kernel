@@ -1,0 +1,14 @@
+#
+# system.prop for erd8825
+#
+
+persist.demo.hdmirotationlock=false
+
+#Override minimum length allowed for offloading a compressed track
+audio.offload.min.duration.secs=30
+
+## IMS Packet Inital Start flag
+vendor.pktrouter=1
+
+# BSP Property for Netflix HD
+ro.netflix.bsp_rev=EXYNOS1280-34993-1

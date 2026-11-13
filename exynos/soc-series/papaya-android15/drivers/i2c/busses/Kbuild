@@ -1,0 +1,1 @@
+obj-$(CONFIG_I2C_EXYNOS5_EXT) += i2c-exynos5.o

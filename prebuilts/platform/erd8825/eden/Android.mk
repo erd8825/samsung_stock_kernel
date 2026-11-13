@@ -1,0 +1,24 @@
+LOCAL_PATH := $(call my-dir)
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := eden_kernel_32.bin
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR)/eden/gpu
+LOCAL_SRC_FILES := eden_kernel_32.bin
+LOCAL_PROPRIETARY_MODULE := true
+
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := eden_kernel_64.bin
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR)/eden/gpu
+LOCAL_SRC_FILES := eden_kernel_64.bin
+LOCAL_PROPRIETARY_MODULE := true
+
+include $(BUILD_PREBUILT)
+
