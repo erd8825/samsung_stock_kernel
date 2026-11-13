@@ -1,0 +1,23 @@
+package: "android.bpfprogs.flags"
+container: "system"
+
+flag {
+    name: "kernel_wakelock_duration"
+    namespace: "pixel_data_engineering"
+    description: "Enable Kernel Wakelock duration metric"
+    bug: "373519546"
+}
+
+flag {
+    name: "load_dmabuf_iterator"
+    namespace: "android_kernel"
+    description: "Load dmabuf iterator program during boot"
+    bug: "442596542"
+}
+
+flag {
+    name: "load_bpf_lock_contention"
+    namespace: "kernel_memory_management"
+    description: "Load lock contention BPF programs during boot"
+    bug: "442017923"
+}
